@@ -36,6 +36,7 @@ config :music_db, MusicDB.Repo,
   password: "root",
   database: "music_db",
   hostname: "localhost",
+  port: 5432,
   migration_lock: nil # this is not normally needed - we put it here to support an example of
                       # creating an index with the `concurrently` option set to true
 
