@@ -1,11 +1,11 @@
-#---
+# ---
 # Excerpted from "Programming Ecto",
 # published by The Pragmatic Bookshelf.
 # Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
 # We make no guarantees that this code is fit for any purpose.
 # Visit https://pragprog.com/titles/wmecto for more book information.
-#---
+# ---
 # This file is responsible for configuring your application
 # and its dependencies with the aid of the Mix.Config module.
 import Config
@@ -32,14 +32,16 @@ import Config
 config :music_db, :ecto_repos, [MusicDB.Repo]
 
 config :music_db, MusicDB.Repo,
-  username: "root",
-  password: "root",
+  username: "music_db",
+  password: System.get_env("MUSIC_DB_PASSWORD"),
   database: "music_db",
   hostname: "localhost",
   port: 5432,
-  migration_lock: nil # this is not normally needed - we put it here to support an example of
-                      # creating an index with the `concurrently` option set to true
+  # this is not normally needed - we put it here to support an example of
+  migration_lock: nil
+
+# creating an index with the `concurrently` option set to true
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"
